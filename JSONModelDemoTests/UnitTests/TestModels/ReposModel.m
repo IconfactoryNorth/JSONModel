@@ -11,3 +11,7 @@
 @implementation ReposModel
 
 @end
+
+@implementation ReposSetModel
+
+@end

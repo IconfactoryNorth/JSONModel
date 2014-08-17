@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1C008FE518B7AE54002DFD3A /* ModelForUpperCaseMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C008FE418B7AE54002DFD3A /* ModelForUpperCaseMapper.m */; };
+		698B4ECB19A11CFE00C2A466 /* NestedSetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 698B4ECA19A11CFE00C2A466 /* NestedSetModel.m */; };
 		9C05B43F168CEB220054215E /* ArrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C05B3F7168CEB220054215E /* ArrayTests.m */; };
 		9C05B440168CEB220054215E /* BuiltInConversionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C05B3F9168CEB220054215E /* BuiltInConversionsTests.m */; };
 		9C05B442168CEB220054215E /* CustomPropsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C05B3FD168CEB220054215E /* CustomPropsTests.m */; };
@@ -117,6 +118,8 @@
 /* Begin PBXFileReference section */
 		1C008FE318B7AE54002DFD3A /* ModelForUpperCaseMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelForUpperCaseMapper.h; sourceTree = "<group>"; };
 		1C008FE418B7AE54002DFD3A /* ModelForUpperCaseMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelForUpperCaseMapper.m; sourceTree = "<group>"; };
+		698B4EC919A11CFE00C2A466 /* NestedSetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NestedSetModel.h; sourceTree = "<group>"; };
+		698B4ECA19A11CFE00C2A466 /* NestedSetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NestedSetModel.m; sourceTree = "<group>"; };
 		9C05B2A8168CE9600054215E /* JSONModelDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSONModelDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C05B2B0168CE9600054215E /* JSONModelDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JSONModelDemoTests-Info.plist"; sourceTree = "<group>"; };
 		9C05B2B7168CE9600054215E /* JSONModelDemoTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JSONModelDemoTests-Prefix.pch"; sourceTree = "<group>"; };
@@ -410,6 +413,8 @@
 				9C05B430168CEB220054215E /* JSONTypesModel.m */,
 				9C05B431168CEB220054215E /* NestedModel.h */,
 				9C05B432168CEB220054215E /* NestedModel.m */,
+				698B4EC919A11CFE00C2A466 /* NestedSetModel.h */,
+				698B4ECA19A11CFE00C2A466 /* NestedSetModel.m */,
 				9C05B433168CEB220054215E /* OptionalPropModel.h */,
 				9C05B434168CEB220054215E /* OptionalPropModel.m */,
 				9C05B435168CEB220054215E /* PostModel.h */,
@@ -771,6 +776,7 @@
 				9C05B462168CEB220054215E /* OptionalPropModel.m in Sources */,
 				9C05B463168CEB220054215E /* PostModel.m in Sources */,
 				9C05B464168CEB220054215E /* PostsModel.m in Sources */,
+				698B4ECB19A11CFE00C2A466 /* NestedSetModel.m in Sources */,
 				9C05B465168CEB220054215E /* PrimitivesModel.m in Sources */,
 				9C05B466168CEB220054215E /* ReposModel.m in Sources */,
 				9C05B467168CEB220054215E /* ValidationTestSuite.m in Sources */,

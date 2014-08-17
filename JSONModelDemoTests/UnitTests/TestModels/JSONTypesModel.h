@@ -28,6 +28,12 @@
 /* mutable list */
 @property (strong, nonatomic) NSMutableArray* dynamicList;
 
+/* set */
+@property (strong, nonatomic) NSSet* set;
+
+/* mutable set */
+@property (strong, nonatomic) NSMutableSet* dynamicSet;
+
 /* object */
 @property (strong, nonatomic) NSDictionary* dictionary;
 

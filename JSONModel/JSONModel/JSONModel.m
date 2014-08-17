@@ -700,7 +700,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
 
         //no other protocols on arrays and dictionaries
         //except JSONModel classes
-        if ([value isKindOfClass:[NSArray class]]) {
+        if ([value isKindOfClass:[NSArray class]] || [value isKindOfClass:[NSSet class]]) {
             @throw [NSException exceptionWithName:@"Bad property protocol declaration"
                                            reason:[NSString stringWithFormat:@"<%@> is not allowed JSONModel property protocol, and not a JSONModel class.", property.protocol]
                                          userInfo:nil];
@@ -740,6 +740,31 @@ static JSONKeyMapper* globalKeyMapper = nil;
 					return nil;
 				}
             }
+        }
+        
+        if ([property.type isSubclassOfClass:[NSSet class]]) {
+			
+			// Expecting a set, make sure 'value' is an array
+			if(![[value class] isSubclassOfClass:[NSArray class]])
+			{
+				if(err != nil)
+				{
+					NSString* mismatch = [NSString stringWithFormat:@"Property '%@' is declared as NSSet<%@>* but the corresponding JSON value is not a JSON Array.", property.name, property.protocol];
+					JSONModelError* typeErr = [JSONModelError errorInvalidDataWithTypeMismatch:mismatch];
+					*err = [typeErr errorByPrependingKeyPathComponent:property.name];
+				}
+				return nil;
+			}
+			
+			//one shot conversion (only, for sets)
+			JSONModelError* arrayErr = nil;
+			value = [[protocolClass class] arrayOfModelsFromDictionaries:value error:&arrayErr];
+			if((err != nil) && (arrayErr != nil))
+			{
+				*err = [arrayErr errorByPrependingKeyPathComponent:property.name];
+				return nil;
+			}
+			value = [NSSet setWithArray: value];	// a set is just an array where we ignore the item order
         }
         
         //check if it's a dictionary of models
@@ -798,6 +823,15 @@ static JSONKeyMapper* globalKeyMapper = nil;
                     [tempArray addObject: [model toDictionary]];
                 } else
                     [tempArray addObject: model];
+            }
+            return [tempArray copy];
+        }
+        
+        //check if should export set of dictionaries
+        if (property.type == [NSSet class] || property.type == [NSMutableSet class]) {
+            NSMutableArray* tempArray = [NSMutableArray arrayWithCapacity: [(NSSet*)value count] ];
+            for (id<AbstractJSONModelProtocol> model in (NSSet*)value) {
+                [tempArray addObject: [model toDictionary]];
             }
             return [tempArray copy];
         }

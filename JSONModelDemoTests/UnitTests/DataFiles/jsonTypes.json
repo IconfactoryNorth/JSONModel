@@ -7,6 +7,8 @@
 
     "list": ["111","222","333"],
     "dynamicList": ["12", 12, 0.12],
+    "set": ["111","222","333"],
+    "dynamicSet": ["12", 12, 0.12],
     "dictionary": {"test":"mest", "value": 123.29},
     "dynamicDictionary": {"key":"value", "otherKey": 1200},
 

@@ -50,6 +50,12 @@
     XCTAssertTrue([t.dynamicList isKindOfClass:[NSArray class]], @"dynamicList failed to read");
     XCTAssertTrue([t.dynamicList[0] isEqualToString:@"12"], @"dynamicList - first obect is not \"12\"");
     
+    XCTAssertTrue([t.set isKindOfClass:[NSSet class]], @"set failed to read");
+    XCTAssertTrue([t.set containsObject:@"111"], @"set - doesn't contain \"111\"");
+    
+    XCTAssertTrue([t.dynamicSet isKindOfClass:[NSMutableSet class]], @"dynamicSet failed to read");
+    XCTAssertTrue([t.dynamicSet containsObject:@"12"], @"dynamicSet - doesn't contain \"12\"");
+    
     XCTAssertTrue([t.dictionary isKindOfClass:[NSDictionary class]], @"dictionary failed to read");
     XCTAssertTrue([t.dictionary[@"test"] isEqualToString:@"mest"], @"dictionary key \"test\"'s value is not \"mest\"");
 

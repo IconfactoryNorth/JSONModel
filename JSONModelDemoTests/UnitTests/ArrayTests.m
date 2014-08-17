@@ -13,6 +13,7 @@
 @implementation ArrayTests
 {
     ReposModel* repos;
+	ReposSetModel* reposSet;
 }
 
 -(void)setUp
@@ -30,6 +31,11 @@
     
     XCTAssertNotNil(repos, @"Could not load the test data file.");
 
+    reposSet = [[ReposSetModel alloc] initWithString:jsonContents error:&err];
+    XCTAssertNil(err, @"%@", [err localizedDescription]);
+    
+    XCTAssertNotNil(repos, @"Could not load the test data file.");
+	
 }
 
 -(void)testLoading
@@ -59,6 +65,12 @@
 {
     XCTAssertEqualObjects([[repos.repositories.firstObject class] description], @"GitHubRepoModel", @"wrong class");
     XCTAssertEqualObjects([repos.repositories.firstObject description], @"cocos2d for iPhone", @"wrong description");
+}
+
+- (void)testSetReverseTransform
+{
+    NSDictionary* dict = [reposSet toDictionary];
+    XCTAssertNotNil(dict, @"Could not convert ReposSetModel back to an NSDictionary");
 }
 
 /*

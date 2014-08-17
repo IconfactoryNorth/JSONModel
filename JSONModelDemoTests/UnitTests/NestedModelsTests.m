@@ -9,12 +9,14 @@
 #import "NestedModelsTests.h"
 
 #import "NestedModel.h"
+#import "NestedSetModel.h"
 #import "ImageModel.h"
 #import "CopyrightModel.h"
 
 @implementation NestedModelsTests
 {
     NestedModel* n;
+	NestedSetModel* ns;
 }
 
 -(void)setUp
@@ -30,6 +32,10 @@
     n = [[NestedModel alloc] initWithString: jsonContents error:&err];
     XCTAssertNil(err, "%@", [err localizedDescription]);
     XCTAssertNotNil(n, @"Could not load the test data file.");
+	
+    ns = [[NestedSetModel alloc] initWithString: jsonContents error:&err];
+    XCTAssertNil(err, "%@", [err localizedDescription]);
+    XCTAssertNotNil(ns, @"Could not load the test data file for set.");
 }
 
 -(void)testNestedStructures
@@ -48,6 +54,18 @@
     XCTAssertTrue([img isKindOfClass:[ImageModel class]], @"images[image2] is not an ImageModel instance");
     XCTAssertTrue([img.name isEqualToString:@"lake.jpg"], @"imagesObject[image2].name is not 'lake.jpg'");
     
+}
+
+-(void)testNestedSetStructures
+{
+    XCTAssertTrue([ns.images isKindOfClass:[NSSet class]], @"images is not an NSSet");
+    XCTAssertTrue([[ns.images anyObject] isKindOfClass:[ImageModel class]], @"[images anyObject] is not an ImageModel instance");
+    XCTAssertTrue([ns.images count] == 3, @"images count is not 3");
+    NSSet* objectsPassingTest = [ns.images objectsPassingTest:^BOOL(ImageModel *obj, BOOL *stop) {
+		return obj.copyright != nil;
+	}];
+	CopyrightModel* copy = [[objectsPassingTest anyObject] copyright];
+    XCTAssertTrue([copy.author isEqualToString:@"Marin Todorov"], @"images object-with-copyright name is not 'Marin Todorov'");
 }
 
 @end
